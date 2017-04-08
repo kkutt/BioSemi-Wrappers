@@ -21,7 +21,7 @@ In our setup (NeuroLab-UJ), ports B0 and B1 are down, so we can set:,
 triggers 1-255 on FIRSTPORTC
 triggers [4,8,12,...,252] on FIRSTPORTB.
 
-v.20141214 Krzysztof Kutt krzysztof.kutt@uj.edu.pl
+v.20141214 Krzysztof Kutt krzysztof.kutt@gmail.com
 """
 
 from ctypes import *

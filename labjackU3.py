@@ -16,7 +16,7 @@ Trigger 0 is used to clear previous trigger, so there is no possibility to
 use trigger 0 as meaningful.
 
 version 20160212
-(C) 2016 Krzysztof Kutt krzysztof.kutt@uj.edu.pl
+(C) 2016 Krzysztof Kutt krzysztof.kutt@gmail.com
 """
 
 from labjack import u3
