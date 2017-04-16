@@ -27,8 +27,8 @@ import threading
 #trigger duration (time before sending signal 0)
 DURATION = 0.05
 
-#karta is setted during calibration (if you use trigger without calibration there will be exception!)
-karta = None
+#u3card is setted during calibration (if you use trigger without calibration there will be exception!)
+u3card = None
 
 
 def configure():
@@ -36,20 +36,20 @@ def configure():
        Sets signal 0 on card.
        Returns 0 if everything is OK"""
     
-    global karta
-    karta = u3.U3()
-    karta.configU3(FIOAnalog = 0, FIODirection = 255, FIOState = 0)
-    karta.configIO()
-    karta.getFeedback( u3.PortStateWrite(State = [0, 0x00, 0x00], WriteMask = [0xff, 0x00, 0x00] ) )
+    global u3card
+    u3card = u3.U3()
+    u3card.configU3(FIOAnalog = 0, FIODirection = 255, FIOState = 0)
+    u3card.configIO()
+    u3card.getFeedback( u3.PortStateWrite(State = [0, 0x00, 0x00], WriteMask = [0xff, 0x00, 0x00] ) )
     return 0
   
 
 def clear_trigger_worker(value):
     """Clears trigger. This function is started by trigger()"""
   
-    global karta
+    global u3card
     sleep(DURATION)
-    karta.getFeedback( u3.PortStateWrite(State = [0, 0x00, 0x00], WriteMask = [0xff, 0x00, 0x00] ) )
+    u3card.getFeedback( u3.PortStateWrite(State = [0, 0x00, 0x00], WriteMask = [0xff, 0x00, 0x00] ) )
 
 
 
@@ -57,7 +57,7 @@ def trigger(value):
     """Sends a trigger. Parameters:
        value: 1-255"""
 
-    global karta
+    global u3card
     value = int(value)
   
     #check input:
@@ -70,9 +70,9 @@ def trigger(value):
     #send trigger:
     '''PortStateWrite sets three bytes: FIO, EIO, CIO -- we only use the first one and ignore EIO and CIO'''
     try:
-        karta.getFeedback( u3.PortStateWrite(State = [value, 0x00, 0x00], WriteMask = [0xff, 0x00, 0x00] ) )
+        u3card.getFeedback( u3.PortStateWrite(State = [value, 0x00, 0x00], WriteMask = [0xff, 0x00, 0x00] ) )
     except LabJackException as _:
-        print "BLAD LABJACKA. Trigger " + str(value) + " nie zostal przeslany!"
+        print "LABJACK ERROR. Trigger " + str(value) + " was not send!"
 
     t = threading.Thread(target=clear_trigger_worker, args=(value,))
     t.start()
