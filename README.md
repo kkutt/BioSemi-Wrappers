@@ -28,7 +28,7 @@ If you want to send triggers that will be automatically added to EEG data by Bio
 
 ### DIO-24 (serial interface)
 
-Wrapper uses [cbw32.dll] library, provided with the official drivers attached to the [DIO-24] card.
+Wrapper uses [cbw32.dll] library, provided with the official drivers attached to the [DIO-24] card. Triggers are sended using the cable with connections depicted in the [DIO-BioSemi cable scheme].
 
 If you want to send triggers that will be automatically added to EEG data by BioSemi device:
  1. Copy [cbw32.dll] and [dio24.py] files to your procedure directory.
@@ -58,3 +58,4 @@ If you want to send triggers that will be automatically added to EEG data by Bio
 [labjackU3.py]: <labjackU3.py>
 [cbw32.dll]: <cbw32.dll>
 [dio24.py]: <dio24.py>
+[DIO-BioSemi cable scheme]: <DIO-BioSemi%20cable.pdf>

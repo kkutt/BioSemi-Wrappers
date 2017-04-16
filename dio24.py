@@ -13,11 +13,12 @@ You can send trigger using trigger(value,port,duration) function.
 Our cable connects:
 FIRSTPORTC -> triggers 1-8 on BioSemi device
 FIRSTPORTB -> triggers 9-16 on BioSemi device
+Consult "DIO-BioSemi cable.pdf" for detailed specification of our connections between PCI-DIO card and BioSemi receiver.
 
 Trigger 0 is used to clear previous trigger, so there is no possibility to
 use trigger 0 as meaningful.
 
-In our setup (NeuroLab-UJ), ports B0 and B1 are down, so we can set:,
+In our setup (NeuroLab-UJ), ports B0 and B1 are down, so we can set:
 triggers 1-255 on FIRSTPORTC
 triggers [4,8,12,...,252] on FIRSTPORTB.
 
